@@ -7,6 +7,10 @@ done
 
 echo "connected!"
 
+set -o allexport
+[[ -f ./secrets.env ]] && source ./secrets.env
+set +o allexport
+
 python /usr/src/app/create_db.py
 
 /usr/local/bin/gunicorn -w 2 -b :8000 echo.app:app
