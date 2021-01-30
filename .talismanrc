@@ -1,3 +1,5 @@
 fileignoreconfig:
 - filename: web/echo/config.py
   checksum: 0bbfb44584027652a262375da85ecaecf8ae3f93ec438ab4a1c69f88348f1fe8
+- filename: .github/workflows/lint_test.yml
+  checksum: 9999878edfa458daeaa4bc4279d00c3bf34e0ae8e575d6d1fddf3393604fac71
