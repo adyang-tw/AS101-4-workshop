@@ -8,6 +8,9 @@ services:
     links:
       - postgres:postgres
     env_file: .env
+    environment:
+      - SECRET_KEY
+      - DB_PASS
     depends_on:
       - postgres
     command: /usr/src/app/start-app.sh
