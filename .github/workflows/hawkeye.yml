@@ -23,4 +23,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: scan hawkeye
       run: |
+        ls -lrt /target
         hawkeye scan --target /target/web
