@@ -16,14 +16,6 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/prep
-      env:
-        VAULT_PASS: ${{ secrets.VAULT_PASS }}
-    - name: hide credentials from the output
-      run: |
-        echo "::add-mask::$POSTGRES_USER"
-        echo "::add-mask::$POSTGRES_PASSWORD"
-        echo "::add-mask::$POSTGRES_DB"
     - name: build docker containers
       run: |
         docker-compose build
@@ -33,6 +25,10 @@ jobs:
           "flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics \
            && flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics"
     - name: Basic smoke test
+      env:
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       run: |
         docker-compose up --build --detach
         sleep 10
