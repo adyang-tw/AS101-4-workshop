@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-ansible-vault view --vault-password-file=<(echo "${VAULT_PASS}") env_secrets >>"${GITHUB_ENV}"
+ansible-vault view --vault-password-file=/read-vault-password env_secrets >>"${GITHUB_ENV}"
